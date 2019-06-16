@@ -1,0 +1,71 @@
+<div id="wifi-area">
+  <p>Wifi Settings</p>
+  <p>
+    <input type="radio" id='wifi-enable'>
+    <label>Enable wifi:</label>
+  </p>
+  <div>
+  <p class="custom"> 
+    <label>Wireless Network Name: <span>*</span> </label> 
+    <select>
+      <option>SSID 1</option>
+      <option>SSID 2</option>
+      <option>SSID 3</option>
+    </select>
+    <button type="button" class="btn btn-primary">1</button>
+  </p>
+  </div>
+  <p>
+    <input type="radio" id='wifi-secutirykey'>
+    <label>Enable Wifi Security:</label>
+  </p>
+  <div>
+  <p class="custom"> 
+    <label>Security Key: <span>*</span> </label> 
+    <input type="text">
+  </p>
+  </div>
+
+  <p>
+    <input type="radio" name="wifi-ip" id='wifi-ip-default'>
+    <label>Obtain an IP address automaticaly (DHCP/BootP)</label>
+  </p>
+  <p>
+    <input type="radio" name="wifi-ip" id='wifi-ip-custom'>
+    <label>Use the gollowing IP address:</label>
+  </p>
+  <div id="wifi-iparea"> 
+    <p class="custom"> 
+      <label>IP-address: <span>*</span> </label> 
+      <input type="text" id='wifi-ip-address'>
+    </p>
+    <p class="custom"> 
+      <label>Subnet Mask: <span>*</span> </label> 
+      <input type="text" id='wifi-ip-mask'>
+    </p>
+    <p class="custom"> 
+      <label>Default Gateway:</label> 
+      <input type="text" id='wifi-ip-gateway'>
+    </p>
+  </div>
+
+  <p>
+    <input type="radio" name="wifi-dns" id='wifi-dns-default'>
+    <label>Obtain DNS server address automaticaly</label>
+  </p>
+  <p>
+    <input type="radio" name="wifi-dns" id='wifi-dns-custom'>
+    <label>Use the following DS server address</label>
+  </p>
+
+  <div id="wifi-dnsarea">
+    <p class="custom"> 
+      <label>Prefered DNS server: <span>*</span> </label> 
+      <input type="text" id='wifi-dns-pref'>
+    </p>
+    <p class="custom"> 
+      <label>Alternative DNS server: </label> 
+      <input type="text" id='wifi-ip-alter'>
+    </p>
+  </div>
+</div>

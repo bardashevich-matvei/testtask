@@ -1,0 +1,45 @@
+<div id="ethernet-area">
+  <p>Ethernet Settings</p>
+  <p>
+    <input type="radio" name="ethernet-ip" id='ethernet-ip-default'>
+    <label>Obtain an IP address automaticaly (DHCP/BootP)</label>
+  </p>
+  <p>
+    <input type="radio" name="ethernet-ip" id='ethernet-ip-custom'>
+    <label>Use the gollowing IP address:</label>
+  </p>
+  <div id="ethernet-iparea"> 
+    <p class="custom"> 
+      <label>IP-address: <span>*</span> </label> 
+      <input type="text" id='ethernet-ip-address'>
+    </p>
+    <p class="custom"> 
+      <label>Subnet Mask: <span>*</span> </label> 
+      <input type="text" id='ethernet-ip-mask'>
+    </p>
+    <p class="custom"> 
+      <label>Default Gateway:</label> 
+      <input type="text" id='ethernet-ip-gateway'>
+    </p>
+  </div>
+
+  <p>
+    <input type="radio" name="ethernet-dns" id='ethernet-dns-default'>
+    <label>Obtain DNS server address automaticaly</label>
+  </p>
+  <p>
+    <input type="radio" name="ethernet-dns" id='ethernet-dns-custom'>
+    <label>Use the following DS server address</label>
+  </p>
+
+  <div id="ethernet-dnsarea">
+    <p class="custom"> 
+      <label>Prefered DNS server: <span>*</span> </label> 
+      <input type="text" id='ethernet-dns-pref'>
+    </p>
+    <p class="custom"> 
+      <label>Alternative DNS server: </label> 
+      <input type="text" id='ethernet-ip-alter'>
+    </p>
+  </div>
+</div>
