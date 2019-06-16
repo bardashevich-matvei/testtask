@@ -1,14 +1,14 @@
 <div id="ethernet-area">
   <p>Ethernet Settings</p>
   <p>
-    <input type="radio" name="ethernet-ip" id='ethernet-ip-default'>
+    <input type="radio" name="ethernet-ip" id='ethernet-ip-default' (click)="addBlockIP()" checked>
     <label>Obtain an IP address automaticaly (DHCP/BootP)</label>
   </p>
   <p>
-    <input type="radio" name="ethernet-ip" id='ethernet-ip-custom'>
+    <input type="radio" name="ethernet-ip" id='ethernet-ip-custom' (click)="removeBlockIP()" >
     <label>Use the gollowing IP address:</label>
   </p>
-  <div id="ethernet-iparea"> 
+  <div id="ethernet-iparea" [class.block]="visibilityip"> 
     <p class="custom"> 
       <label>IP-address: <span>*</span> </label> 
       <input type="text" id='ethernet-ip-address'>
@@ -24,15 +24,15 @@
   </div>
 
   <p>
-    <input type="radio" name="ethernet-dns" id='ethernet-dns-default'>
+    <input type="radio" name="ethernet-dns" id='ethernet-dns-default'  (click)="addBlockDNS()" checked>
     <label>Obtain DNS server address automaticaly</label>
   </p>
   <p>
-    <input type="radio" name="ethernet-dns" id='ethernet-dns-custom'>
+    <input type="radio" name="ethernet-dns" id='ethernet-dns-custom'  (click)="removeBlockDNS()" >
     <label>Use the following DS server address</label>
   </p>
 
-  <div id="ethernet-dnsarea">
+  <div id="ethernet-dnsarea" [class.block]="visibilitydns">
     <p class="custom"> 
       <label>Prefered DNS server: <span>*</span> </label> 
       <input type="text" id='ethernet-dns-pref'>

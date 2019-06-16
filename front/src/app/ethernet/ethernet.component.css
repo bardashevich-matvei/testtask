@@ -5,7 +5,6 @@ div {
 }
 
 #ethernet-area {
-    display: inline-block;
     float: left;
     width: 50%;
     height: 50em;
@@ -14,6 +13,12 @@ div {
     border: 1px black solid;
 }
 
+.block {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+
 .custom {
     float: right;
 }
@@ -21,6 +26,7 @@ div {
 .custom input {
     width: 25em;
     margin-left: 1em;
+    height: 2.5em;
 }
 
 span {

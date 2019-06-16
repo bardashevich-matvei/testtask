@@ -7,9 +7,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WifiComponent implements OnInit {
 
-  constructor() { }
+  visibilitykey: boolean;
+  visibility: boolean;
+  visibilityip: boolean;
+  visibilitydns: boolean;
+  constructor() {
+    this.visibility = true;
+    this.visibilitykey = true;
+    this.visibilityip = true;
+    this.visibilitydns = true;
+  }
 
   ngOnInit() {
   }
 
+  toggleMain(){
+    this.visibility = !this.visibility;
+  }
+
+  addBlockIP() {
+    this.visibilityip = true;
+  }
+  removeBlockIP() {
+    this.visibilityip = false;
+  }
+
+  addBlockDNS() {
+    this.visibilitydns = true;
+  }
+  removeBlockDNS() {
+    this.visibilitydns = false;
+  }
+
+  toggleKey(){
+    this.visibilitykey = !this.visibilitykey;
+  }
 }

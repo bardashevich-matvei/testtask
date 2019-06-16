@@ -12,4 +12,8 @@ export class AcceptComponent implements OnInit {
   ngOnInit() {
   }
 
+  submit(): void {
+    alert('asd');
+  }
+
 }

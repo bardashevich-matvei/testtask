@@ -15,6 +15,11 @@ div {
     border-right: 1px black solid;
 }
 
+.main {
+    width: 100%;
+    margin-left: 0;
+}
+
 .custom {
     float: right;
 }
@@ -22,12 +27,14 @@ div {
 .custom input {
     width: 25em;
     margin-left: 1em;
+    height: 2.5em;
 }
 
 select {
     width: 20em;
     margin-left: 1em;
     margin-right: 1em;
+    height: 2.5em;
 }
 
 span {
@@ -36,4 +43,14 @@ span {
 
 button {
     margin-right: 2em;  
+    background: url('../../../resoures/refresh_icon.svg');
+    height: 1.7em;
+    width: 1.7em;
+    border-radius: 50%;
+    border: 1px black solid;
+}
+
+.block {
+    pointer-events: none;
+    opacity: 0.4;
 }
