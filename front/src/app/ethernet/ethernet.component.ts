@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { disableDebugTools } from '@angular/platform-browser';
-import { ThrowStmt } from '@angular/compiler';
+import { DataService } from '../../data.service';
 
 @Component({
   selector: 'app-ethernet',
@@ -9,20 +8,10 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class EthernetComponent implements OnInit {
 
-  iPaddress: string;
-  mask: string;
-  gateway: string;
-  prefdns: string;
-  alterdns: string;
   visibilityip: boolean;
   visibilitydns: boolean;
 
-  constructor() {
-    this.iPaddress = 'auto';
-    this.mask = 'auto';
-    this.gateway = 'auto';
-    this.prefdns = 'auto';
-    this.alterdns = 'auto';
+  constructor(private data: DataService) {
     this.visibilityip = true;
     this.visibilitydns = true;
   }
@@ -42,5 +31,20 @@ export class EthernetComponent implements OnInit {
   }
   removeBlockDNS() {
     this.visibilitydns = false;
+  }
+  trackingIP(event: any) {
+    this.data.changeEthernetIPaddress(event.target.value);
+  }
+  trackingMask(event: any) {
+    this.data.changeEthernetMask(event.target.value);
+  }
+  trackingGateway(event: any) {
+    this.data.changeEthernetGateway(event.target.value);
+  }
+  trackingDNSpref(event: any) {
+    this.data.changeEthernetDNSpref(event.target.value);
+  }
+  trackingDNSalter(event: any) {
+    this.data.changeEthernetDNSalter(event.target.value);
   }
 }

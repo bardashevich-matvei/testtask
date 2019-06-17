@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { EthernetComponent } from './ethernet/ethernet.component';
 import { WifiComponent } from './wifi/wifi.component';
 import { AcceptComponent } from './accept/accept.component';
+import { DataService } from '../data.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,12 @@ import { AcceptComponent } from './accept/accept.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    EthernetComponent,
+    WifiComponent,
+    AcceptComponent,
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

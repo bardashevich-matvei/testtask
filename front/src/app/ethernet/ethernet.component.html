@@ -1,45 +1,45 @@
 <div id="ethernet-area">
   <p>Ethernet Settings</p>
   <p>
-    <input type="radio" name="ethernet-ip" id='ethernet-ip-default' (click)="addBlockIP()" checked>
+    <input type="radio" name="ethernet-ip" (click)="addBlockIP()" checked>
     <label>Obtain an IP address automaticaly (DHCP/BootP)</label>
   </p>
   <p>
-    <input type="radio" name="ethernet-ip" id='ethernet-ip-custom' (click)="removeBlockIP()" >
-    <label>Use the gollowing IP address:</label>
+    <input type="radio" name="ethernet-ip" (click)="removeBlockIP()" >
+    <label >Use the gollowing IP address:</label>
   </p>
   <div id="ethernet-iparea" [class.block]="visibilityip"> 
     <p class="custom"> 
       <label>IP-address: <span>*</span> </label> 
-      <input type="text" id='ethernet-ip-address'>
+      <input type="text"(keyup)="trackingIP($event)">
     </p>
     <p class="custom"> 
       <label>Subnet Mask: <span>*</span> </label> 
-      <input type="text" id='ethernet-ip-mask'>
+      <input type="text" (keyup)="trackingMask($event)">
     </p>
     <p class="custom"> 
       <label>Default Gateway:</label> 
-      <input type="text" id='ethernet-ip-gateway'>
+      <input type="text" (keyup)="trackingGateway($event)">
     </p>
   </div>
 
   <p>
-    <input type="radio" name="ethernet-dns" id='ethernet-dns-default'  (click)="addBlockDNS()" checked>
+    <input type="radio" name="ethernet-dns" (click)="addBlockDNS()" checked>
     <label>Obtain DNS server address automaticaly</label>
   </p>
   <p>
-    <input type="radio" name="ethernet-dns" id='ethernet-dns-custom'  (click)="removeBlockDNS()" >
+    <input type="radio" name="ethernet-dns" (click)="removeBlockDNS()" >
     <label>Use the following DS server address</label>
   </p>
 
   <div id="ethernet-dnsarea" [class.block]="visibilitydns">
     <p class="custom"> 
       <label>Prefered DNS server: <span>*</span> </label> 
-      <input type="text" id='ethernet-dns-pref'>
+      <input type="text" (keyup)="trackingDNSpref($event)">
     </p>
     <p class="custom"> 
       <label>Alternative DNS server: </label> 
-      <input type="text" id='ethernet-ip-alter'>
+      <input type="text" (keyup)="trackingDNSalter($event)">
     </p>
   </div>
 </div>

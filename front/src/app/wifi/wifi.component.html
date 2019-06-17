@@ -8,7 +8,7 @@
     <div>
     <p class="custom"> 
       <label>Wireless Network Name: <span>*</span> </label> 
-      <select>
+      <select (change)="trackingName($event)">
         <option disabled selected>Please select</option>
         <option>SSID 1</option>
         <option>SSID 2</option>
@@ -24,50 +24,50 @@
     <div>
     <p class="custom" [class.block]="visibilitykey"> 
       <label>Security Key: <span>*</span> </label> 
-      <input type="text">
+      <input type="text" (keyup)="trackingKey($event)">
     </p>
     </div>
 
     <p>
-      <input type="radio" name="wifi-ip" id='wifi-ip-default' (click)="addBlockIP()" checked>
+      <input type="radio" name="wifi-ip" (click)="addBlockIP()" checked>
       <label>Obtain an IP address automaticaly (DHCP/BootP)</label>
     </p>
     <p>
-      <input type="radio" name="wifi-ip" id='wifi-ip-custom' (click)="removeBlockIP()">
+      <input type="radio" name="wifi-ip" (click)="removeBlockIP()">
       <label>Use the gollowing IP address:</label>
     </p>
     <div id="wifi-iparea" [class.block]="visibilityip"> 
       <p class="custom"> 
         <label>IP-address: <span>*</span> </label> 
-        <input type="text" id='wifi-ip-address'>
+        <input type="text" (keyup)="trackingIPaddress($event)">
       </p>
       <p class="custom"> 
         <label>Subnet Mask: <span>*</span> </label> 
-        <input type="text" id='wifi-ip-mask'>
+        <input type="text" (keyup)="trackingMask($event)">
       </p>
       <p class="custom"> 
         <label>Default Gateway:</label> 
-        <input type="text" id='wifi-ip-gateway'>
+        <input type="text" (keyup)="trackingGateway($event)">
       </p>
     </div>
 
     <p>
-      <input type="radio" name="wifi-dns" id='wifi-dns-default' (click)="addBlockDNS()" checked>
+      <input type="radio" name="wifi-dns" (click)="addBlockDNS()" checked>
       <label>Obtain DNS server address automaticaly</label>
     </p>
     <p>
-      <input type="radio" name="wifi-dns" id='wifi-dns-custom' (click)="removeBlockDNS()">
+      <input type="radio" name="wifi-dns" (click)="removeBlockDNS()">
       <label>Use the following DS server address</label>
     </p>
 
     <div id="wifi-dnsarea" [class.block]="visibilitydns">
       <p class="custom"> 
         <label>Prefered DNS server: <span>*</span> </label> 
-        <input type="text" id='wifi-dns-pref'>
+        <input type="text" (keyup)="trackingDNSpref($event)">
       </p>
       <p class="custom"> 
         <label>Alternative DNS server: </label> 
-        <input type="text" id='wifi-ip-alter'>
+        <input type="text" (keyup)="trackingDNSalter($event)">
       </p>
     </div>
   </div>
