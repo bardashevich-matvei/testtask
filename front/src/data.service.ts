@@ -27,9 +27,40 @@ export class DataService {
     wifiDNSpref = this.messageWifiDNSpref.asObservable();
     private messageWifiDNSalter = new BehaviorSubject<string>('');
     wifiDNSalter = this.messageWifiDNSalter.asObservable();
+    private messageEthernetEnableIP = new BehaviorSubject<string>('');
+    ethernetEnableIP = this.messageEthernetEnableIP.asObservable();
+    private messageEthernetEnableDNS = new BehaviorSubject<string>('');
+    ethernetEnableDNS = this.messageEthernetEnableDNS.asObservable();
+    private messageWifiEnable = new BehaviorSubject<string>('');
+    wifiEnable = this.messageWifiEnable.asObservable();
+    private messageWifiEnableKey = new BehaviorSubject<string>('');
+    wifiEnableKey = this.messageWifiEnableKey.asObservable();
+    private messageWifiEnableIP = new BehaviorSubject<string>('');
+    wifiEnableIP = this.messageWifiEnableIP.asObservable();
+    private messageWifiEnableDNS = new BehaviorSubject<string>('');
+    wifiEnableDNS = this.messageWifiEnableDNS.asObservable();
+
 
     constructor() {}
 
+    changeWifiEnable(s: string) {
+        this.messageWifiEnable.next(s);
+    }
+    changeWifiEnableKey(s: string) {
+        this.messageWifiEnableKey.next(s);
+    }
+    changeWifiEnableIP(s: string) {
+        this.messageWifiEnableIP.next(s);
+    }
+    changeWifiEnableDNS(s: string) {
+        this.messageWifiEnableDNS.next(s);
+    }
+    changeEthernetEnableIP(s: string) {
+        this.messageEthernetEnableIP.next(s);
+    }
+    changeEthernetEnableDNS(s: string) {
+        this.messageEthernetEnableDNS.next(s);
+    }
     changeEthernetIPaddress(s: string) {
         this.messageEthernetIPaddress.next(s);
     }

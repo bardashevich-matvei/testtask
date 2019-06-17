@@ -20,27 +20,35 @@ export class WifiComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data.changeWifiEnable((!this.visibility).toString());
+    this.data.changeWifiEnableKey((!this.visibilitykey).toString());
   }
 
   toggleMain() {
+    this.data.changeWifiEnable(this.visibility.toString());
     this.visibility = !this.visibility;
   }
 
   addBlockIP() {
     this.visibilityip = true;
+    this.data.changeWifiEnableIP('true');
   }
   removeBlockIP() {
     this.visibilityip = false;
+    this.data.changeWifiEnableIP('false');
   }
 
   addBlockDNS() {
     this.visibilitydns = true;
+    this.data.changeWifiEnableDNS('true');
   }
   removeBlockDNS() {
     this.visibilitydns = false;
+    this.data.changeWifiEnableDNS('false');
   }
 
   toggleKey() {
+    this.data.changeWifiEnableKey(this.visibilitykey.toString());
     this.visibilitykey = !this.visibilitykey;
   }
   trackingName(event: any) {
