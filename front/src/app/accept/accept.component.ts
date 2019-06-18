@@ -73,11 +73,11 @@ export class AcceptComponent implements OnInit {
                   settings.ethernetGateway = '';
                 }
                 if (this.ethernetEnableDNS === 'true') {
-                  settings.prefDNS = this.ethernetDNSpref;
-                  settings.alterDNS = this.ethernetDNSalter;
+                  settings.ethernetDNSpref = this.ethernetDNSpref;
+                  settings.ethernetDNSalter = this.ethernetDNSalter;
                 } else {
-                  settings.prefDNS = '';
-                  settings.alterDNS = '';
+                  settings.ethernetDNSpref = '';
+                  settings.ethernetDNSalter = '';
                 }
                 if (this.wifiEnable === 'true') {
                   // пока ничего
@@ -90,12 +90,14 @@ export class AcceptComponent implements OnInit {
                   settings.wifiDNSpref = '';
                   settings.wifiDNSalter = '';
                 }
-                fetch('/', { method: 'POST',
+                fetch('/api/', { method: 'POST',
                              headers: {'Content-Type': 'application/json'},
                              body: JSON.stringify(settings)})
                 .then((res) => {
                   if (res.status === 200) {
                     alert('Настройки сохраненны успешно!');
+                  } else if (res.status === 412) {
+                    alert('Ошибка! Введены неверные данные');
                   }
                 });
               } else {
@@ -115,13 +117,6 @@ export class AcceptComponent implements OnInit {
       }
     } else {
       alert('Введите, пожалуйста, IP-address и/или Subnet Mask в Ethernet Settings');
-    }
-  }
-  ValidateIPaddress(ipaddress) {
-    if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {
-      return true;
-    } else {
-      return false;
     }
   }
 }

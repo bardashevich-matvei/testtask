@@ -20,8 +20,10 @@ export class WifiComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.changeWifiEnable((!this.visibility).toString());
-    this.data.changeWifiEnableKey((!this.visibilitykey).toString());
+    this.data.changeWifiEnable('false');
+    this.data.changeWifiEnableKey('false');
+    this.data.changeWifiEnableIP('false');
+    this.data.changeWifiEnableDNS('false');
   }
 
   toggleMain() {
@@ -31,20 +33,20 @@ export class WifiComponent implements OnInit {
 
   addBlockIP() {
     this.visibilityip = true;
-    this.data.changeWifiEnableIP('true');
+    this.data.changeWifiEnableIP('false');
   }
   removeBlockIP() {
     this.visibilityip = false;
-    this.data.changeWifiEnableIP('false');
+    this.data.changeWifiEnableIP('true');
   }
 
   addBlockDNS() {
     this.visibilitydns = true;
-    this.data.changeWifiEnableDNS('true');
+    this.data.changeWifiEnableDNS('false');
   }
   removeBlockDNS() {
     this.visibilitydns = false;
-    this.data.changeWifiEnableDNS('false');
+    this.data.changeWifiEnableDNS('true');
   }
 
   toggleKey() {
