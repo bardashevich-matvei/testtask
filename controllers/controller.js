@@ -6,19 +6,19 @@ exports.addSettings = function(req, res) {
         if ((req.body.ethernetDNSpref === '' || validate(req.body.ethernetDNSpref)) && (req.body.ethernetDNSalter === '' || validate(req.body.ethernetDNSalter))) {
             if ((req.body.wifiIPaddress === '' || validate(req.body.wifiIPaddress)) && (req.body.wifiMask === '' || validate(req.body.wifiMask)) && (req.body.wifiGateway === '' || validate(req.body.wifiGateway))) {
                 if ((req.body.wifiDNSpref === '' || validate(req.body.wifiDNSpref)) && (req.body.wifiDNSalter === '' || validate(req.body.wifiDNSalter))) {
-                    let ip = req.body.ethernetIPaddress ? 'auto' : req.body.ethernetIPaddress;
-                    let mask = req.body.ethernetMask ? 'auto' : req.body.ethernetMask;
-                    let gateway = req.body.ethernetGateway ? 'auto' : req.body.ethernetGateway;
-                    let prefDNS = req.body.ethernetDNSpref ? 'auto' : req.body.ethernetDNSpref;
-                    let alterDNS = req.body.ethernetDNSalter ? 'auto' : req.body.ethernetDNSalter;
+                    let ip = req.body.ethernetIPaddress ? req.body.ethernetIPaddress : 'auto';
+                    let mask = req.body.ethernetMask ? req.body.ethernetMask : 'auto';
+                    let gateway = req.body.ethernetGateway ? req.body.ethernetGateway : 'auto';
+                    let prefDNS = req.body.ethernetDNSpref ? req.body.ethernetDNSpref : 'auto';
+                    let alterDNS = req.body.ethernetDNSalter ? req.body.ethernetDNSalter : 'auto';
                     
-                    let wifiName = req.body.wifiName ? 'auto' : req.body.wifiName;
-                    let wifiKey = req.body.wifiName ? 'auto' : req.body.wifiKey;
-                    let wifiIp = req.body.wifiIPaddress ? 'auto' : req.body.wifiIPaddress;
-                    let wifiMask = req.body.wifiMask ? 'auto' : req.body.wifiMask;
-                    let wifiGateway = req.body.wifiGateway ? 'auto' : req.body.wifiGateway;
-                    let wifiPrefDNS = req.body.wifiDNSpref ? 'auto' : req.body.wifiDNSpref;
-                    let wifiAlterDNS = req.body.wifiDNSalter ? 'auto' : req.body.wifiDNSalter;
+                    let wifiName = req.body.wifiName ? req.body.wifiName : 'auto';
+                    let wifiKey = req.body.wifiName ? req.body.wifiKey : 'auto';
+                    let wifiIp = req.body.wifiIPaddress ? req.body.wifiIPaddress : 'auto';
+                    let wifiMask = req.body.wifiMask ? req.body.wifiMask : 'auto';
+                    let wifiGateway = req.body.wifiGateway ? req.body.wifiGateway : 'auto';
+                    let wifiPrefDNS = req.body.wifiDNSpref ? req.body.wifiDNSpref : 'auto';
+                    let wifiAlterDNS = req.body.wifiDNSalter ? req.body.wifiDNSalter : 'auto';
                     ethernet.create({IPaddress: ip, mask: mask, gateway: gateway, prefDNSserver: prefDNS, alterDNSserver: alterDNS}, (err, result) => {
                         if (err) {
                             console.log(err);
@@ -44,8 +44,22 @@ exports.addSettings = function(req, res) {
     }
 }
 
-exports.getLastSettings = function(req, res) {
+exports.getLastEthernetSettings = function(req, res) {
+    ethernet.find({}, function(err, result) {
+        if (err) {
+            console.log(err);
+            res.json(err)
+        } else res.json(result[result.length - 1]);
+    });
+}
 
+exports.getLastWifiSettings = function(req, res) {
+    wifi.find({}, function(err, result) {
+        if (err) {
+            console.log(err);
+            res.json(err)
+        } else res.json(result[result.length - 1]);
+    });
 }
 
 function validate(ipaddress) {

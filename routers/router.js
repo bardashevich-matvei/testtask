@@ -4,7 +4,9 @@ const controller = require('../controllers/controller');
 
 router.post('/', controller.addSettings);
 
-router.get('/', controller.getLastSettings);
+router.get('/ethernet', controller.getLastEthernetSettings);
+
+router.get('/wifi', controller.getLastWifiSettings);
 
 
 module.exports = router;

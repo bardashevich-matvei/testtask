@@ -1,73 +1,73 @@
 <div id="wifi-area">
   <p>Wifi Settings</p>
   <p>
-    <input type="checkbox" id='wifi-enable' (click)="toggleMain()">
+    <input type="checkbox" id='wifi-enable' (click)="toggleMain()" checked="{{checkwifi}}">
     <label>Enable wifi:</label>
   </p>
   <div class="main" [class.block]="visibility">
     <div>
     <p class="custom"> 
       <label>Wireless Network Name: <span>*</span> </label> 
-      <select (change)="trackingName($event)">
+      <select (change)="trackingName($event)" value="{{name}}">
         <option disabled selected>Please select</option>
         <option>SSID 1</option>
         <option>SSID 2</option>
         <option>SSID 3</option>
       </select>
-      <button type="button"></button>
+      <button type="button" (click)="refresh()"></button>
     </p>
     </div>
     <p>
-      <input type="checkbox" id='wifi-secutirykey' (click)="toggleKey()">
+      <input type="checkbox" id='wifi-secutirykey' (click)="toggleKey()" checked="{{checkwifikey}}">
       <label>Enable Wifi Security:</label>
     </p>
     <div>
     <p class="custom" [class.block]="visibilitykey"> 
       <label>Security Key: <span>*</span> </label> 
-      <input type="text" (keyup)="trackingKey($event)">
+      <input type="text" (keyup)="trackingKey($event)" value="{{key}}">
     </p>
     </div>
 
     <p>
-      <input type="radio" name="wifi-ip" (click)="addBlockIP()" checked>
+      <input type="radio" name="wifi-ip" (click)="addBlockIP()" checked="{{checkwifiip}}">
       <label>Obtain an IP address automaticaly (DHCP/BootP)</label>
     </p>
     <p>
-      <input type="radio" name="wifi-ip" (click)="removeBlockIP()">
+      <input type="radio" name="wifi-ip" (click)="removeBlockIP()" checked="{{uncheckwifiip}}">
       <label>Use the gollowing IP address:</label>
     </p>
     <div id="wifi-iparea" [class.block]="visibilityip"> 
       <p class="custom"> 
         <label>IP-address: <span>*</span> </label> 
-        <input type="text" (keyup)="trackingIPaddress($event)">
+        <input type="text" (keyup)="trackingIPaddress($event)" value="{{ip}}" >
       </p>
       <p class="custom"> 
         <label>Subnet Mask: <span>*</span> </label> 
-        <input type="text" (keyup)="trackingMask($event)">
+        <input type="text" (keyup)="trackingMask($event)" value="{{mask}}">
       </p>
       <p class="custom"> 
         <label>Default Gateway:</label> 
-        <input type="text" (keyup)="trackingGateway($event)">
+        <input type="text" (keyup)="trackingGateway($event)" value="{{gateway}}">
       </p>
     </div>
 
     <p>
-      <input type="radio" name="wifi-dns" (click)="addBlockDNS()" checked>
+      <input type="radio" name="wifi-dns" (click)="addBlockDNS()" checked="{{checkwifiDNS}}">
       <label>Obtain DNS server address automaticaly</label>
     </p>
     <p>
-      <input type="radio" name="wifi-dns" (click)="removeBlockDNS()">
+      <input type="radio" name="wifi-dns" (click)="removeBlockDNS()" checked="{{uncheckwifiDNS}}">
       <label>Use the following DS server address</label>
     </p>
 
     <div id="wifi-dnsarea" [class.block]="visibilitydns">
       <p class="custom"> 
         <label>Prefered DNS server: <span>*</span> </label> 
-        <input type="text" (keyup)="trackingDNSpref($event)">
+        <input type="text" (keyup)="trackingDNSpref($event)" value="{{prefDNS}}">
       </p>
       <p class="custom"> 
         <label>Alternative DNS server: </label> 
-        <input type="text" (keyup)="trackingDNSalter($event)">
+        <input type="text" (keyup)="trackingDNSalter($event)" value="{{alterDNS}}">
       </p>
     </div>
   </div>

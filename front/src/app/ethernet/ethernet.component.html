@@ -1,45 +1,45 @@
 <div id="ethernet-area">
   <p>Ethernet Settings</p>
   <p>
-    <input type="radio" name="ethernet-ip" (click)="addBlockIP()" checked>
+    <input type="radio" name="ethernet-ip" (click)="addBlockIP()" checked="{{checkip}}">
     <label>Obtain an IP address automaticaly (DHCP/BootP)</label>
   </p>
   <p>
-    <input type="radio" name="ethernet-ip" (click)="removeBlockIP()" >
+    <input type="radio" name="ethernet-ip" (click)="removeBlockIP()" checked="{{uncheckip}}"/>
     <label >Use the gollowing IP address:</label>
   </p>
   <div id="ethernet-iparea" [class.block]="visibilityip"> 
     <p class="custom"> 
       <label>IP-address: <span>*</span> </label> 
-      <input type="text"(keyup)="trackingIP($event)">
+      <input type="text"(keyup)="trackingIP($event)" value="{{ip}}">
     </p>
     <p class="custom"> 
       <label>Subnet Mask: <span>*</span> </label> 
-      <input type="text" (keyup)="trackingMask($event)">
+      <input type="text" (keyup)="trackingMask($event)" value="{{mask}}"/>
     </p>
     <p class="custom"> 
       <label>Default Gateway:</label> 
-      <input type="text" (keyup)="trackingGateway($event)">
+      <input type="text" (keyup)="trackingGateway($event)" value="{{gateway}}"/>
     </p>
   </div>
 
   <p>
-    <input type="radio" name="ethernet-dns" (click)="addBlockDNS()" checked>
+    <input type="radio" name="ethernet-dns" (click)="addBlockDNS()" checked="{{checkdns}}">
     <label>Obtain DNS server address automaticaly</label>
   </p>
   <p>
-    <input type="radio" name="ethernet-dns" (click)="removeBlockDNS()" >
+    <input type="radio" name="ethernet-dns" (click)="removeBlockDNS()" checked="{{uncheckdns}}">
     <label>Use the following DS server address</label>
   </p>
 
   <div id="ethernet-dnsarea" [class.block]="visibilitydns">
     <p class="custom"> 
       <label>Prefered DNS server: <span>*</span> </label> 
-      <input type="text" (keyup)="trackingDNSpref($event)">
+      <input value="{{prefDNS}}" type="text" (keyup)="trackingDNSpref($event)">
     </p>
     <p class="custom"> 
       <label>Alternative DNS server: </label> 
-      <input type="text" (keyup)="trackingDNSalter($event)">
+      <input value="{{alterDNS}}" type="text" (keyup)="trackingDNSalter($event)">
     </p>
   </div>
 </div>

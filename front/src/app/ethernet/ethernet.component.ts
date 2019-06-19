@@ -8,8 +8,17 @@ import { DataService } from '../../data.service';
 })
 export class EthernetComponent implements OnInit {
 
+  ip: string;
+  mask: string;
+  gateway: string;
+  prefDNS: string;
+  alterDNS: string;
   visibilityip: boolean;
+  checkip: boolean;
+  uncheckip: boolean;
   visibilitydns: boolean;
+  checkdns: boolean;
+  uncheckdns: boolean;
 
   constructor(private data: DataService) {
     this.visibilityip = true;
@@ -19,6 +28,53 @@ export class EthernetComponent implements OnInit {
   ngOnInit() {
     this.data.changeEthernetEnableIP('false');
     this.data.changeEthernetEnableDNS('false');
+    fetch('/api/ethernet', { method: 'GET', headers: {'Content-Type': 'application/json'}})
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      if (data.IPaddress === 'auto') {
+        this.checkip = true;
+        this.ip = '';
+        this.data.changeEthernetIPaddress('');
+        this.mask = '';
+        this.data.changeEthernetMask('');
+        this.gateway = '';
+        this.data.changeEthernetGateway('');
+      } else {
+        this.uncheckip = true;
+        this.removeBlockIP();
+        this.ip = data.IPaddress;
+        this.data.changeEthernetIPaddress(data.IPaddress);
+        this.mask = data.mask;
+        this.data.changeEthernetMask(data.mask);
+        if (data.gateway === 'auto') {
+          this.gateway = '';
+          this.data.changeEthernetGateway('');
+        } else {
+          this.gateway = data.gateway;
+          this.data.changeEthernetGateway(data.gateway);
+        }
+      }
+      if (data.prefDNSserver === 'auto') {
+        this.checkdns = true;
+        this.prefDNS = '';
+        this.data.changeEthernetDNSpref('');
+        this.alterDNS = '';
+        this.data.changeEthernetDNSalter('');
+      } else {
+        this.removeBlockDNS();
+        this.uncheckdns = true;
+        this.prefDNS = data.prefDNSserver;
+        this.data.changeEthernetDNSpref(data.prefDNSserver);
+        if (data.alterDNSserver !== 'auto')  {
+          this.alterDNS = data.alterDNSserver;
+          this.data.changeEthernetDNSalter(data.alterDNSserver);
+        } else {
+          this.alterDNS = '';
+          this.data.changeEthernetDNSalter('');
+        }
+      }
+    });
   }
 
   addBlockIP() {
