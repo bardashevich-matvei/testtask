@@ -3,6 +3,7 @@ import { DataService } from '../../data.service';
 import { element } from 'protractor';
 import { TouchSequence } from 'selenium-webdriver';
 import { settings } from 'cluster';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-accept',
@@ -80,7 +81,33 @@ export class AcceptComponent implements OnInit {
                   settings.ethernetDNSalter = '';
                 }
                 if (this.wifiEnable === 'true') {
-                  // пока ничего
+                  settings.wifiName = this.wifiName;
+                  if (this.wifiEnableIP === 'true') {
+                    settings.wifiIPaddress = this.wifiIPaddress;
+                    settings.wifiMask = this.wifiMask;
+                    settings.wifiGateway = this.wifiGateway;
+                  } else {
+                    settings.wifiIPaddress = '';
+                    settings.wifiMask = '';
+                    settings.wifiGateway = '';
+                  }
+                  if (this.wifiEnableDNS === 'true') {
+                    settings.wifiDNSpref = this.wifiDNSpref;
+                    settings.wifiDNSalter = this.wifiDNSalter;
+                  } else {
+                    settings.wifiDNSpref = '';
+                    settings.wifiDNSalter = '';
+                  }
+                  if (this.wifiEnableKey === 'true') {
+                    settings.wifiKey = this.wifiKey;
+                  } else {
+                    settings.wifiKey = '';
+                    settings.wifiIPaddress = '';
+                    settings.wifiMask = '';
+                    settings.wifiGateway = '';
+                    settings.wifiDNSpref = '';
+                    settings.wifiDNSalter = '';
+                  }
                 } else {
                   settings.wifiName = '';
                   settings.wifiKey = '';

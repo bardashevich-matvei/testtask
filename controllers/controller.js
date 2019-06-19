@@ -1,5 +1,6 @@
 const ethernet = require('../models/ethernet').ethernet;
 const wifi = require('../models/wifi').wifi;
+const networks = require('node-wifi');
 
 exports.addSettings = function(req, res) {
     if ((req.body.ethernetIPaddress === '' || validate(req.body.ethernetIPaddress)) && (req.body.ethernetMask === '' || validate(req.body.ethernetMask)) && (req.body.ethernetGateway === '' || validate(req.body.ethernetGateway))) {
@@ -62,6 +63,46 @@ exports.getLastWifiSettings = function(req, res) {
     });
 }
 
+
+exports.getCurrentWifisAccessPoints = function(req, res) {
+    networks.init({
+        iface : null // network interface, choose a random wifi interface if set to null
+    });
+    networks.scan(function(err, networks) {
+        if (err) {
+            console.log(err);
+            res.json(err);
+        } else {
+            wifi.find({}, function(err, result) {
+                if (err) {
+                    console.log(err);
+                    res.json(err);
+                } else {
+                    let response = []
+                    for (let i=1; i<networks.length; i++) {
+                        response.push({ssid:  networks[i].ssid, quality: networks[i].quality});
+                    }
+                    console.log(response);
+                    response.sort((a, b) => b.quality - a.quality);
+                    console.log(response);
+                    if (result.length !== 0) {
+                        let j=0;
+                        while (j<result.length) {
+                            for (let k=0; k<response.length; k++) 
+                            if (result[j].name === response[j].ssid) {
+                                let temp = response[j].quality;
+                                response.splice(k, 1);
+                                response.unshift({ssid: result[j].name,  quality: temp});
+                            }
+                            j++;
+                        }
+                        res.json({response});
+                    } else res.json({response});
+                }
+            });
+        }
+    });
+}
 function validate(ipaddress) {
     if (/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(ipaddress)) {
         return true;

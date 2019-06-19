@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
+import { Navigation } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-ethernet',
@@ -31,7 +32,6 @@ export class EthernetComponent implements OnInit {
     fetch('/api/ethernet', { method: 'GET', headers: {'Content-Type': 'application/json'}})
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.IPaddress === 'auto') {
         this.checkip = true;
         this.ip = '';
@@ -74,6 +74,10 @@ export class EthernetComponent implements OnInit {
           this.data.changeEthernetDNSalter('');
         }
       }
+    })
+    .catch(() => {
+      this.checkip = true;
+      this.checkdns = true;
     });
   }
 

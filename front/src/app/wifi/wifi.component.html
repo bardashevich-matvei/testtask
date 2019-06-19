@@ -10,9 +10,7 @@
       <label>Wireless Network Name: <span>*</span> </label> 
       <select (change)="trackingName($event)" value="{{name}}">
         <option disabled selected>Please select</option>
-        <option>SSID 1</option>
-        <option>SSID 2</option>
-        <option>SSID 3</option>
+        <option *ngFor="let item of items; let i = index">{{item.ssid}}</option>
       </select>
       <button type="button" (click)="refresh()"></button>
     </p>
@@ -39,7 +37,7 @@
     <div id="wifi-iparea" [class.block]="visibilityip"> 
       <p class="custom"> 
         <label>IP-address: <span>*</span> </label> 
-        <input type="text" (keyup)="trackingIPaddress($event)" value="{{ip}}" >
+        <input type="text" (keyup)="trackingIP($event)" value="{{ip}}" >
       </p>
       <p class="custom"> 
         <label>Subnet Mask: <span>*</span> </label> 

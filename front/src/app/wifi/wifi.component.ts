@@ -25,6 +25,7 @@ export class WifiComponent implements OnInit {
   uncheckwifiip: boolean;
   checkwifiDNS: boolean;
   uncheckwifiDNS: boolean;
+  items: any[];
   constructor(private data: DataService) {
     this.visibility = true;
     this.visibilitykey = true;
@@ -33,6 +34,7 @@ export class WifiComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.refresh();
     this.data.changeWifiEnable('false');
     this.data.changeWifiEnableKey('false');
     this.data.changeWifiEnableIP('false');
@@ -40,7 +42,6 @@ export class WifiComponent implements OnInit {
     fetch('/api/wifi', { method: 'GET', headers: {'Content-Type': 'application/json'}})
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       if (data.name !== 'auto') {
         this.checkwifi = true;
         this.toggleMain();
@@ -100,7 +101,24 @@ export class WifiComponent implements OnInit {
           this.data.changeWifiDNSalter('');
         }
       }
+    })
+    .catch(() => {
+      this.name = 'Please select';
+      this.checkwifiip = true;
+      this.checkwifiDNS = true;
     });
+  }
+
+  refresh() {
+    fetch('/api/wifi/accesspoints', { method: 'GET', headers: {'Content-Type': 'application/json'}})
+    .then((res) => res.json())
+    .then((data) => {
+      this.items = [];
+      data.response.forEach((element) => {
+        this.items.push(element);
+      });
+    })
+    .catch((err) => {});
   }
 
   toggleMain() {

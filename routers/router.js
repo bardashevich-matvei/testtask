@@ -8,5 +8,7 @@ router.get('/ethernet', controller.getLastEthernetSettings);
 
 router.get('/wifi', controller.getLastWifiSettings);
 
+router.get('/wifi/accesspoints', controller.getCurrentWifisAccessPoints);
+
 
 module.exports = router;
