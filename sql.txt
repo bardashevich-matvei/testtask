@@ -1,0 +1,27 @@
+CREATE TABLE IF NOT EXISTS `testtask`.`wifi` (
+  `idwifi` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `securitykey` VARCHAR(45) NOT NULL,
+  `IPaddress` VARCHAR(45) NOT NULL,
+  `mask` VARCHAR(45) NOT NULL,
+  `gateway` VARCHAR(45) NOT NULL,
+  `prefDNSserver` VARCHAR(45) NOT NULL,
+  `alterDNSserver` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idwifi`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 8
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
+
+CREATE TABLE IF NOT EXISTS `testtask`.`ethernet` (
+  `idethernet` INT(11) NOT NULL AUTO_INCREMENT,
+  `IPaddress` VARCHAR(45) NOT NULL,
+  `mask` VARCHAR(45) NOT NULL,
+  `gateway` VARCHAR(45) NOT NULL,
+  `prefDNSserver` VARCHAR(45) NOT NULL,
+  `alterDNSserver` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idethernet`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 9
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci
